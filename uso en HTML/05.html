@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Casa de cambio</title>
+  <script>
+    // Función que calcula el total a recibir
+    function calcularTotal() {
+      // Obtenemos los valores de los input
+      let monedaOrigen = document.querySelector("#moneda_origen").value;
+      let monedaDestino = document.querySelector("#moneda_destino").value;
+      let monto = parseFloat(document.querySelector("#monto").value);
+
+      // Verificamos que se haya ingresado un monto válido
+      if (isNaN(monto)) {
+        alert("Por favor, ingresa un monto válido.");
+        return false; // Evita el envío del formulario
+      }
+
+      // Calculamos el total a recibir
+      let total = 0;
+      switch (monedaOrigen) {
+        case "dolar":
+          if (monedaDestino == "dolar") {
+            total = monto;
+          } else if (monedaDestino == "soles") {
+            total = monto * 3.71;
+          } else if (monedaDestino == "euros") {
+            total = monto * 0.92;
+          }
+          break;
+        case "soles":
+          if (monedaDestino == "dolar") {
+            total = monto / 4.30;
+          } else if (monedaDestino == "soles") {
+            total = monto;
+          } else if (monedaDestino == "euros") {
+            total = monto * 0.23;
+          }
+          break;
+        case "euros":
+          if (monedaDestino == "dolar") {
+            total = monto / 0.92;
+          } else if (monedaDestino == "soles") {
+            total = monto * 4.35;
+          } else if (monedaDestino == "euros") {
+            total = monto;
+          }
+          break;
+      }
+
+      // Mostramos el total en un alert
+      alert(`El total a recibir es: ${total.toFixed(2)} ${monedaDestino}`);
+      
+      return false; // Evita el envío del formulario
+    }
+  </script>
+</head>
+<body>
+  <h1>Casa de cambio</h1>
+  <form onsubmit="return calcularTotal();">
+    <p>
+      <label for="moneda_origen">Moneda origen</label>
+      <select name="moneda_origen" id="moneda_origen">
+        <option value="dolar">Dólar</option>
+        <option value="soles">Soles</option>
+        <option value="euros">Euros</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="moneda_destino">Moneda destino</label>
+      <select name="moneda_destino" id="moneda_destino">
+        <option value="dolar">Dólar</option>
+        <option value="soles">Soles</option>
+        <option value="euros">Euros</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="monto">Monto</label>
+      <input type="number" name="monto" id="monto" />
+    </p>
+
+    <button type="submit">Calcular</button>
+  </form>
+</body>
+</html>

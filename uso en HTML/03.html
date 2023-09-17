@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="radio" id="opcion1" name="opciones" value="Opción 1" onclick="mostrarMensaje(this)">
+<label for="opcion1">Opcion 1</label><br>
+<input type="radio" id="opcion2" name="opciones" value="Opción 2" onclick="mostrarMensaje(this)">
+<label for="opcion2">Opcion 2</label><br>
+
+<script>
+function mostrarMensaje(elemento) {
+  alert("Has seleccionado " + elemento.value);
+}
+</script>
+
+</body>
+</html>
